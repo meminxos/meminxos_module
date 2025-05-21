@@ -13,22 +13,17 @@ class coloraccount(loader.Module):
         args_raw = utils.get_args_raw(message)
         
         try:
-            args = int(args_raw)  # Преобразуем аргумент в число
+            args = int(args_raw)
         except ValueError:
             await message.edit("Ошибка: Введите корректное число!")
             return
-        
-        # Функция определения цвета
         def seven():
             colors = ["❤️red/красный", "🧡orange/оранжевый", "💜violet/фиолетовый",
                       "💚green/зеленый", "🩵cyan/голубой", "💙blue/синий", "🩷pink/розовый"]
             
-            color_name = colors[args % 7]  # Вычисляем цвет
-            return color_name
-        
-        # Проверяем, является ли аргумент подходящим ID
-        if args_raw.startswith("-100"):  # .startswith работает только со строками
-            args = int(args_raw[:3])  # Обрезаем ID и превращаем его в число
-
+            color_name = colors[args % 7] 
+            return color_name     
+        if args_raw.startswith("-100"):
+            args = int(args_raw[:3])
         color_result = seven()
         await message.edit(f"Color your name: {color_result}")
